@@ -1,0 +1,5 @@
+BEGIN
+    write batata;
+    if 5+2 then
+        read x;
+END;
