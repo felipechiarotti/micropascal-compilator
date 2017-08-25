@@ -1,4 +1,4 @@
-ompilator: src/main.c src/lexer/lex.yy.c
+compilator: src/main.c src/lexer/lex.yy.c
 	cc -o compilator src/main.c src/lexer/lex.yy.c 
 
 lexer: 
