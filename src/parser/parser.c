@@ -16,6 +16,8 @@ int parse_token(){
     while(1){
         int current_stack = stack_top(stack_data);
         int current_input = lookahead; 
+            printf("Entrada: %d\n",lookahead);
+            show_stack();
         if(current_stack >= 400){
             switch(current_stack){
                 case PROGR:
@@ -39,6 +41,10 @@ int parse_token(){
                     }
                     break;
                 case CMD:
+                    if(current_input >= 263 && current_input <= 265){
+                        stack_down();
+                        stack_up(SCMD);       
+                    }else{
                     switch(current_input){
                         case IF:
                             stack_down();
@@ -59,13 +65,10 @@ int parse_token(){
                             stack_up(PROGR);
                             stack_up(BEGN);
                             break;
-                        case WRITE || READ || VAR:
-                            stack_down();
-                            stack_up(SCMD);
-                            break;
-                        default:
+                        default:    
                             return -1;
                     }
+                    break;
                 case SCMD:
                     switch(current_input){
                         case WRITE:
@@ -87,6 +90,7 @@ int parse_token(){
                         default:
                             return -1;
                     }
+                    break;
                 case EXPR:
                     switch(current_input){
                         case NUM:
@@ -97,26 +101,36 @@ int parse_token(){
                         default:
                             return -1;
                     }
+                    break;
                 case REC2:
-                    switch(current_input){
-                        case PLUS:
-                            stack_down();
-                            stack_up(EXPR);
-                            stack_up(PLUS);
-                            break;
-                        case MINUS:
-                            stack_down();
-                            stack_up(EXPR);
-                            stack_up(MINUS);
-                            break;
-                        default:
-                            return -1;
+                    if((current_input >= 260 && current_input<=265) ||(current_input == EOL || current_input == THEN)){
+                        stack_down();
+                    }else{
+                        switch(current_input){
+                            case PLUS:
+                                stack_down();
+                                stack_up(EXPR);
+                                stack_up(PLUS);
+                                break;
+                            case MINUS:
+                                stack_down();
+                                stack_up(EXPR);
+                                stack_up(MINUS);
+                                break;
+                            default:
+                                return -1;
+                        }
                     }
-            }
-        }else if(current_stack >= 260 && current_input < 400){
+
+                    break;
+            }                        
+                    }
+
+        }else if(current_stack >= 260 && current_stack < 400){
             if(current_input == current_stack){
                 stack_down();
                 lookahead = yylex();
+                printf("MATCH\n");
                 return 0;
             }else{
                 return -1;
@@ -133,7 +147,7 @@ int parse_token(){
 int run_parser(int initial_prod){
     config_parser(initial_prod);
     int valid = parse_token();
-    while(valid >= 0){
+    while(valid == 0){
         valid = parse_token();
     }
     return valid;

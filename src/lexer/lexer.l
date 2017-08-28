@@ -13,7 +13,7 @@ int nline = 1;
 [a-zA-Z][a-zA-Z0-9]*				return VAR;
 [rR][eE][aA][dD]					return READ;
 "="									return EQ;
-[-]?[0-9]+(.[0-9]+)?				return NUM;
+[-]?[0-9]+([.][0-9]+)?				return NUM;
 "+"									return PLUS;
 "-"									return MINUS;
 [ \t]								;
