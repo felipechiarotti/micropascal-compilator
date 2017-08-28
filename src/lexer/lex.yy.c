@@ -388,9 +388,9 @@ struct yy_trans_info
 static yyconst flex_int16_t yy_accept[45] =
     {   0,
         0,    0,   18,   16,   14,   15,   12,   13,   11,    3,
-       10,    8,    8,    8,    8,    8,    8,    8,   11,    0,
-        8,    8,    8,    1,    8,    8,    8,    8,   11,    8,
-        6,    8,    8,    8,    8,    8,    8,    2,    8,    8,
+       10,    9,    9,    9,    9,    9,    9,    9,   11,    0,
+        9,    9,    9,    1,    9,    9,    9,    9,   11,    9,
+        6,    9,    9,    9,    9,    9,    8,    2,    9,    9,
         5,    4,    7,    0
     } ;
 
@@ -808,12 +808,12 @@ return WRITE;
 case 8:
 YY_RULE_SETUP
 #line 13 "src/lexer/lexer.l"
-return VAR;
+return READ;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 14 "src/lexer/lexer.l"
-return READ;
+return VAR;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
