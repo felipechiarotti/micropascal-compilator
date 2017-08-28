@@ -122,7 +122,7 @@ int parse_token(){
                 return -1;
             }
         }else{
-            if(current_input == current_stack){
+            if(current_stack == 36 && current_input == 36){
                 stack_down();
                 return 1;
             }
@@ -133,7 +133,7 @@ int parse_token(){
 int run_parser(int initial_prod){
     config_parser(initial_prod);
     int valid = parse_token();
-    while(valid == 0){
+    while(valid >= 0){
         valid = parse_token();
     }
     return valid;

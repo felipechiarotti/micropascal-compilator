@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv){
 		int result = run_parser(PROGR);
-		if(result){
+		if(result == 1){
 			printf("Compilado com sucesso!\n");
 		}else{
 			printf("Não foi possível compilar o arquivo\n");
