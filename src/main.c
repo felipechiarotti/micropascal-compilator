@@ -1,25 +1,12 @@
 #include <stdio.h>
-#include "parser/parser.h"
-extern void yyset_in(FILE*);
+#include "parser/parser.c"
 
 int main(int argc, char **argv){
-	if(argc == 2){
-		FILE *file;
-		if(!(file = fopen(argv[1], "r"))){
-			perror("Erro: ");
-            return (-1);
+		int result = run_parser(PROGR);
+		if(result){
+			printf("Compilado com sucesso!\n");
 		}else{
-			struct Parser parser;
-			int result = run_parser(parser, PROGR);
-			if(result){
-				printf("%s compilado com sucesso!",argv[1]);
-			}else{
-				printf("Não foi possível compilar o arquivo %s",argv[1]);
-			}
+			printf("Não foi possível compilar o arquivo\n");
 		}
-		fclose(file);
-	}else{
-		printf("[!]Utilize o compilador da seguinte forma: \"%s nome-do-arquivo\"\n",argv[0]);
-	}
 	return 0;
 }

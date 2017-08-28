@@ -19,6 +19,7 @@ int nline = 1;
 [ \t]								;
 [\n]								nline++;
 .									printf("caracter inesperado na linha %d\n",nline);
+<<EOF>> 							return 36;
 %%
 
 int yywrap(void)

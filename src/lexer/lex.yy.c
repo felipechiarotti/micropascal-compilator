@@ -851,14 +851,16 @@ YY_RULE_SETUP
 #line 21 "src/lexer/lexer.l"
 printf("caracter inesperado na linha %d\n",nline);
 	YY_BREAK
+case YY_STATE_EOF(INITIAL):
+#line 22 "src/lexer/lexer.l"
+return 36;
+	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 22 "src/lexer/lexer.l"
+#line 23 "src/lexer/lexer.l"
 ECHO;
 	YY_BREAK
-#line 860 "src/lexer/lex.yy.c"
-case YY_STATE_EOF(INITIAL):
-	yyterminate();
+#line 864 "src/lexer/lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1857,7 +1859,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 22 "src/lexer/lexer.l"
+#line 23 "src/lexer/lexer.l"
 
 
 
